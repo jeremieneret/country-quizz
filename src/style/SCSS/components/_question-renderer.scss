@@ -1,0 +1,15 @@
+@use '../tools/' as *;
+
+.question-text {
+  font-size: 24px;
+  font-weight: 500;
+}
+
+.flag-question {
+  display: flex;
+  justify-content: space-between;
+  img {
+    width: 24%;
+    height: auto;
+  }
+}

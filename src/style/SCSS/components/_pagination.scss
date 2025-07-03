@@ -1,0 +1,24 @@
+@use '../tools/' as *;
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+}
+
+.page {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  font-weight: bold;
+}
+
+.page-completed {
+  background: $background-3;
+}
+
+.page-upcoming {
+  opacity: 0.6;
+}

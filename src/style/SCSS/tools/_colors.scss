@@ -1,0 +1,18 @@
+$background-1 : #343964;
+$background-2 : #393F6E;
+$background-2o : #393f6ed5;
+$gradient-start: #E65895;
+$gradient-end:   #BC6BE8;
+$background-3: linear-gradient(to right, $gradient-start, $gradient-end);
+$background-3-opacity: linear-gradient(
+  to right,
+  rgba($gradient-start, 0.9),
+  rgba($gradient-end,   0.7)
+);
+$primary : #E2E4F3;
+$riptide: #8BEBCE;
+
+#root,
+body {
+  color: $primary;
+}

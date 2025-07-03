@@ -1,0 +1,72 @@
+@use "../tools/" as *;
+
+ul.options-list {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 32px auto 0;
+  justify-content: space-between;
+
+  li {
+    position: relative;
+    height: 60px;
+    width: 250px;
+    margin-bottom: 24px;
+    border-radius: 12px;
+    background-color: $background-2;      // couleur de base animable
+    cursor: pointer;
+    overflow: hidden;                     // clip l’overlay
+    transition: color 300ms ease;         // on anime la couleur du texte
+
+    // GRADIENT OVERLAY
+    &::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: $background-3;          // ton gradient
+      opacity: 0;                         // invisible par défaut
+      transition: opacity 300ms ease;     // on anime l’opacité
+      z-index: 0;
+    }
+
+    // CONTENU VISIBLE AU-DESSUS
+    button {
+      position: relative;
+      z-index: 1;
+      width: 100%;
+      height: 100%;
+      padding: 24px;
+      background: transparent;
+      border: none;
+      color: $primary;
+      font-weight: 500;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      img.icon {
+        margin-left: 12px;
+      }
+    }
+
+    // HOVER & bonne réponse : on fade-in l’overlay + change text-color
+    &:hover::before,
+    &.correct::before {
+      opacity: 1;
+    }
+
+    &:hover,
+    &.correct {
+      color: $primary;
+
+      button {
+        color: $primary;
+      }
+    }
+
+    // mauvaise réponse : simple fade
+    &.wrong {
+      opacity: 0.6;
+    }
+  }
+}
