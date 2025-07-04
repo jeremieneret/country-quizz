@@ -83,6 +83,83 @@ body {
   font-family: "Be Vietman Pro", sans-serif;
 }
 
+.continent-selector {
+  width: 800px;
+  height: -moz-fit-content;
+  height: fit-content;
+  text-align: center;
+  transform: translateY(calc(50vh - 50%));
+  margin: 0 auto;
+}
+.continent-selector h2 {
+  font-size: 40px;
+  margin-bottom: 24px;
+}
+.continent-selector .continent-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 24px;
+}
+.continent-selector .continent-item {
+  position: relative;
+  height: 60px;
+  width: 250px;
+  border-radius: 12px;
+  background-color: #393F6E;
+  overflow: hidden;
+  cursor: pointer;
+  transition: color 300ms ease;
+}
+.continent-selector .continent-item::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, #E65895, #BC6BE8);
+  opacity: 0;
+  transition: opacity 300ms ease;
+  z-index: 0;
+}
+.continent-selector .continent-item > .continent-btn {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 100%;
+  padding: 24px;
+  background: transparent;
+  border: none;
+  color: #E2E4F3;
+  font-weight: 500;
+  font-size: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: color 300ms ease;
+}
+.continent-selector .continent-item.selected::before {
+  opacity: 1;
+}
+.continent-selector .continent-item.selected > .continent-btn {
+  color: white;
+}
+.continent-selector .confirm-btn {
+  margin-top: 24px;
+  padding: 12px 24px;
+  font-size: 18px;
+  border: none;
+  border-radius: 8px;
+  background-color: #8BEBCE;
+  color: #393F6E;
+  cursor: pointer;
+  transition: opacity 200ms ease;
+}
+.continent-selector .confirm-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
 .quiz-end {
   margin: auto;
   width: 395px;
@@ -121,11 +198,10 @@ ul.options-list li {
   position: relative;
   height: 60px;
   width: 250px;
-  margin-bottom: 24px;
   border-radius: 12px;
   background-color: #393F6E;
-  cursor: pointer;
   overflow: hidden;
+  cursor: pointer;
   transition: color 300ms ease;
 }
 ul.options-list li::before {
@@ -137,7 +213,7 @@ ul.options-list li::before {
   transition: opacity 300ms ease;
   z-index: 0;
 }
-ul.options-list li button {
+ul.options-list li > button {
   position: relative;
   z-index: 1;
   width: 100%;
@@ -151,17 +227,12 @@ ul.options-list li button {
   display: flex;
   align-items: center;
   justify-content: center;
-}
-ul.options-list li button img.icon {
-  margin-left: 12px;
+  transition: color 300ms ease;
 }
 ul.options-list li:hover::before, ul.options-list li.correct::before {
   opacity: 1;
 }
-ul.options-list li:hover, ul.options-list li.correct {
-  color: #E2E4F3;
-}
-ul.options-list li:hover button, ul.options-list li.correct button {
+ul.options-list li:hover > button, ul.options-list li.correct > button {
   color: #E2E4F3;
 }
 ul.options-list li.wrong {

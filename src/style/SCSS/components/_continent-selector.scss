@@ -1,0 +1,53 @@
+@use "../tools/" as *;
+@use "./quiz-button" as button;
+
+.continent-selector {
+  width: 800px;
+  height: fit-content;
+  text-align: center;
+  transform: translateY(calc(50vh - 50%));
+  margin: 0 auto;
+  h2 {
+    font-size: 40px;
+    margin-bottom: 24px;
+  }
+
+  .continent-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+  }
+
+  .continent-item {
+    @include button.quiz-button(".continent-btn");
+
+    &.selected {
+      &::before {
+        opacity: 1;
+      }
+      > .continent-btn {
+        color: white;
+      }
+    }
+  }
+
+  .confirm-btn {
+    margin-top: 24px;
+    padding: 12px 24px;
+    font-size: 18px;
+    border: none;
+    border-radius: 8px;
+    background-color: $riptide;
+    color: $background-2;
+    cursor: pointer;
+    transition: opacity 200ms ease;
+
+    &:disabled {
+      opacity: 0.5;
+      cursor: not-allowed;
+    }
+  }
+}

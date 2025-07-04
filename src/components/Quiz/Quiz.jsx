@@ -1,13 +1,12 @@
-// src/components/Quiz/Quiz.jsx
-import React, { useEffect } from 'react'
-import useQuiz from '../../hooks/useQuiz.js'
-import Pagination from './Pagination.jsx'
-import QuestionRenderer from './QuestionRenderer.jsx'
-import OptionsList from './OptionsList.jsx'
-import EndScreen from './EndScreen.jsx'
-import TimerBar from './TimerBar.jsx'
+import React, { useEffect } from 'react';
+import useQuiz from '../../hooks/useQuiz.js';
+import Pagination from './Pagination.jsx';
+import QuestionRenderer from './QuestionRenderer.jsx';
+import OptionsList from './OptionsList.jsx';
+import EndScreen from './EndScreen.jsx';
+import TimerBar from './TimerBar.jsx';
 
-export default function Quiz() {
+export default function Quiz({ continents, onRestart }) {
   const {
     questions,
     answers,
@@ -15,53 +14,66 @@ export default function Quiz() {
     score,
     finished,
     timeLeft,
-    initQuiz,
     selectOption,
     next,
-  } = useQuiz()
+  } = useQuiz(continents);
 
   useEffect(() => {
     function onKeyDown(e) {
       if (finished) {
         if (e.key === 'ArrowRight' || e.key === 'Enter') {
-          initQuiz()
+          onRestart();
         }
-        return
+        return;
       }
       if (
         (e.key === 'ArrowRight' || e.key === 'Enter') &&
         answers[currentIndex] !== null
       ) {
-        next()
+        next();
       }
     }
-    window.addEventListener('keydown', onKeyDown)
-    return () => window.removeEventListener('keydown', onKeyDown)
-  }, [finished, currentIndex, answers, next, initQuiz])
+    window.addEventListener('keydown', onKeyDown);
+    return () => window.removeEventListener('keydown', onKeyDown);
+  }, [finished, currentIndex, answers, next, onRestart]);
 
-  if (!questions.length) {
-    return <p>Loading questions…</p>
+  if (questions === null) {
+    return <p>Loading questions…</p>;
   }
+
+  if (questions.length === 0) {
+    return (
+      <div className="no-questions">
+        <p>No questions for selected continent(s).</p>
+        <button onClick={onRestart}>Choose other continent(s)</button>
+      </div>
+    );
+  }
+
   if (finished) {
     return (
-      <EndScreen score={score} total={questions.length} onRestart={initQuiz} />
-    )
+      <EndScreen
+        score={score}
+        total={questions.length}
+        onRestart={onRestart}
+      />
+    );
   }
 
-  const current = questions[currentIndex]
-  const userAns = answers[currentIndex]
+  const current = questions[currentIndex];
+  const userAns = answers[currentIndex];
 
-  // Guard supplémentaire
-  if (!current || !current.options || current.options.length === 0) {
-    return <p>Chargement de la question…</p>
+  if (!current || !current.options?.length) {
+    return <p>Chargement de la question…</p>;
   }
-
 
   return (
     <div className="quiz-container">
       <header>
         <h1>Country Quiz</h1>
-        <p><span>🏆</span> {score} / {questions.length} points</p>
+        <p>
+          <span>🏆</span> {score} / {questions.length} points
+        </p>
       </header>
 
       <div className="quiz">
@@ -82,5 +94,5 @@ export default function Quiz() {
         />
       </div>
     </div>
-  )
+  );
 }

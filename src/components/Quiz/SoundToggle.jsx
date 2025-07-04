@@ -21,7 +21,7 @@ export default function SoundToggle() {
 
   return (
     <button className="sound-toggle" onClick={toggleMute}>
-      {muted ? '🔇 Sound Off' : '🔊 Sound On'}
+      {muted ? 'Sound Off' : 'Sound On'}
     </button>
   );
 }
