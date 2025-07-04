@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import confetti from 'canvas-confetti';
 import { playSound } from '../../utils/playSound.js';
 import { fadeOut } from '../../utils/audioFade.js';
-import Congrats from '../../../public/assets/images/congrats.png';
+import Congrats from '/assets/images/congrats.png';
 
 export default function EndScreen({ score, total, onRestart }) {
   const [audio, setAudio] = useState(null);
