@@ -1,5 +1,4 @@
 const soundFiles = {
-  intro:               '/assets/sounds/intro.ogg',
   'end_screen_score>=7': '/assets/sounds/end_screen_score>=7.ogg',
   'end_screen_score<7':  '/assets/sounds/end_screen_score<7.ogg',
   good_answer:         '/assets/sounds/good_answer.ogg',
